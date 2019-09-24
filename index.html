@@ -1,0 +1,48 @@
+<html lang="en" ng-app="sliderApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slider</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js" integrity="sha256-47AQCzX6dqzjicKe4PabaBJtLnWffl34LU9WJUulNog=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/7.0.0/rzslider.js" integrity="sha256-XAywesdeKhkRCGdY1K9Syv/pB1XzZ1FyJuZOHP0gQa8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/7.0.0/rzslider.css" integrity="sha256-9T1f0rN2mygyVpOn3WgE+1IJub+EMJbWsRbauX0SCR0=" crossorigin="anonymous" />
+</head>
+<body ng-controller="sliderCtrl">
+ <div class="container">
+     
+    <rzslider rz-slider-model="slider1.value" rz-slider-options="slider1.options"></rzslider>
+    <rzslider rz-slider-model="slider2.value" rz-slider-options="slider2.options"></rzslider>
+ </div>
+    
+
+    <script>
+    angular.module('sliderApp',['rzSlider'])
+    .controller('sliderCtrl',function($scope){
+$scope.slider1 = {
+    value: 50,
+    options: {
+      floor: 0,
+      ceil: 100,
+      step: 1,
+      showSelectionBar: true
+    }
+};
+
+$scope.slider2 = {
+    value: 25,
+    options: {
+      floor: 0,
+      ceil: 50,
+      step: 1,
+      showSelectionBar: true,
+      onChange: function(){
+          $scope.slider1.value = 2 * $scope.slider2.value;
+      }
+    }
+};
+    })
+    </script>
+</body>
+</html>
